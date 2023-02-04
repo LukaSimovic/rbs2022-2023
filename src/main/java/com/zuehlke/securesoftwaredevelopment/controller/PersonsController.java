@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.nio.file.AccessDeniedException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -32,7 +34,9 @@ public class PersonsController {
     }
 
     @GetMapping("/persons/{id}")
-    public String person(@PathVariable int id, Model model) {
+    public String person(@PathVariable int id, Model model, HttpSession session) {
+        String csrf = session.getAttribute("CSRF_TOKEN").toString();
+        model.addAttribute("CSRF_TKN", csrf);
         model.addAttribute("person", personRepository.get("" + id));
         return "person";
     }
@@ -53,7 +57,11 @@ public class PersonsController {
     }
 
     @PostMapping("/update-person")
-    public String updatePerson(Person person) {
+    public String updatePerson(Person person, HttpSession session, @RequestParam("csrftkn") String csrf) throws AccessDeniedException {
+        String csrfFromSession = session.getAttribute("CSRF_TOKEN").toString();
+        if(!csrfFromSession.equals(csrf)){
+            throw new AccessDeniedException("Forbidden");
+        }
         personRepository.update(person);
         return "redirect:/persons/" + person.getId();
     }
