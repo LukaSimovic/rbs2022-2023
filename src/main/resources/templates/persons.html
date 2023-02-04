@@ -27,7 +27,7 @@
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
             <th scope="col">Email</th>
-            <th></th>
+            <th sec:authorize="hasAuthority('VIEW_PERSON')"></th>
         </tr>
         </thead>
         <tbody id="tableContent">
@@ -36,7 +36,7 @@
             <td th:text="${person.firstName}"></td>
             <td th:text="${person.lastName}"></td>
             <td th:text="${person.email}"></td>
-            <td><a th:href="@{/persons/{id}(id=${person.id})}">View profile</a></td>
+            <td sec:authorize="hasAuthority('VIEW_PERSON')"><a th:href="@{/persons/{id}(id=${person.id})}">View profile</a></td>
         </tr>
         </tbody>
     </table>
@@ -67,6 +67,7 @@
                             tdElement.textContent = person.email;
                             tableRowElement.appendChild(tdElement);
                             tdElement = document.createElement("td");
+                            tdElement.setAttribute("sec:authorize", "hasAuthority('VIEW_PERSON')");
                             tdElement.innerHTML = '<a href="/persons/' + person.id + '">View profile</a>';
                             tableRowElement.appendChild(tdElement);
 
