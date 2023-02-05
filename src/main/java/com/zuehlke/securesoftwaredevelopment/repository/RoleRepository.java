@@ -36,7 +36,7 @@ public class RoleRepository {
                 roles.add(new Role(id, name));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.warn("Failed to find user " + userId, e);
         }
         return roles;
     }

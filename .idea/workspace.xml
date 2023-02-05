@@ -6,10 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="7426b0dd-4e66-4785-9e7e-e97d54a4a898" name="Changes" comment="Attack!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/controller/MoviesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/controller/MoviesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zuehlke/securesoftwaredevelopment/controller/MoviesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zuehlke/securesoftwaredevelopment/controller/MoviesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/controller/PersonsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/controller/PersonsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/GenreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/GenreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/HashedUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/HashedUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/MovieRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/PermissionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/PermissionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/PersonRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/RatingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/RatingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zuehlke/securesoftwaredevelopment/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zuehlke/securesoftwaredevelopment/controller/PersonsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zuehlke/securesoftwaredevelopment/controller/PersonsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zuehlke/securesoftwaredevelopment/repository/CommentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zuehlke/securesoftwaredevelopment/repository/CommentRepository.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,19 +126,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>

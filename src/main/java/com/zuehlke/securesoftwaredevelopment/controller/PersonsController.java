@@ -72,6 +72,7 @@ public class PersonsController {
         if(!SecurityUtil.hasPermission("UPDATE_PERSON")){
             int currentUserId = SecurityUtil.getCurrentUser().getId();
             if(currentUserId != id){
+                LOG.error("User " + currentUserId + " doesn't have permission to delete person!");
                 throw new AccessDeniedException("Forbidden");
             }
         }
@@ -94,6 +95,7 @@ public class PersonsController {
             int currentUserId = SecurityUtil.getCurrentUser().getId();
             int personId = Integer.parseInt(person.getId());
             if(currentUserId != personId){
+                LOG.error("User " + currentUserId + " doesn't have permission to update person details!");
                 throw new AccessDeniedException("Forbidden");
             }
         }
