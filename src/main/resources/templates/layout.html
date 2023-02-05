@@ -29,9 +29,9 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" th:href="@{/movies}">MovieHub</a>
+        <a class="navbar-brand" th:href="@{/movies}" sec:authorize="hasAuthority('VIEW_MOVIES_LIST')">MovieHub</a>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAuthority('VIEW_MOVIES_LIST')">
                 <a class="nav-link" th:href="@{/movies}">Movies</a>
             </li>
             <li class="nav-item" sec:authorize="hasAuthority('VIEW_PERSONS_LIST')">

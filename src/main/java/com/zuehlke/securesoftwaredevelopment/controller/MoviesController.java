@@ -40,6 +40,7 @@ public class MoviesController {
     }
 
     @GetMapping("/")
+    @PreAuthorize("hasAuthority('VIEW_MOVIES_LIST')")
     public String showSearch(Model model) {
         model.addAttribute("movies", movieRepository.getAll());
         return "movies";
@@ -53,6 +54,7 @@ public class MoviesController {
 
     @GetMapping(value = "/api/movies/search", produces = "application/json")
     @ResponseBody
+    @PreAuthorize("hasAuthority('VIEW_MOVIES_LIST')")
     public List<Movie> search(@RequestParam("query") String query) throws SQLException {
         return movieRepository.search(query);
     }
