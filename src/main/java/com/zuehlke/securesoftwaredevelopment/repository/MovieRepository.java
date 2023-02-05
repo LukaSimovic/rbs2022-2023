@@ -111,6 +111,9 @@ public class MovieRepository {
                         statement2.setInt(1, (int) finalId);
                         statement2.setInt(2, genre.getId());
                         statement2.executeUpdate();
+                        AuditLogger
+                                .getAuditLogger(MovieRepository.class)
+                                .audit("The movie " + movie.getTitle() + " is successfully created");
                     } catch (SQLException e) {
                         LOG.warn("Failed to add new movies to genres relation", e);
                     }
@@ -134,6 +137,9 @@ public class MovieRepository {
             statement.executeUpdate(query2);
             statement.executeUpdate(query3);
             statement.executeUpdate(query4);
+            AuditLogger
+                    .getAuditLogger(MovieRepository.class)
+                    .audit("The movie " + movieId + " is successfully deleted");
         } catch (SQLException e) {
             LOG.warn("Failed to delete a movie " + movieId, e);
         }

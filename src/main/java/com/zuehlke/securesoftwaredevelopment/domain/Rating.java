@@ -14,6 +14,15 @@ public class Rating {
         this.rating = rating;
     }
 
+    @Override
+    public String toString() {
+        return "Rating[" +
+                "movieId=" + movieId +
+                ", userId=" + userId +
+                ", rating=" + rating +
+                ']';
+    }
+
     public int getMovieId() {
         return movieId;
     }

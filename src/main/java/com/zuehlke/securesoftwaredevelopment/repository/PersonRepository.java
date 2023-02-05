@@ -76,6 +76,9 @@ public class PersonRepository {
              Statement statement = connection.createStatement();
         ) {
             statement.executeUpdate(query);
+            AuditLogger
+                    .getAuditLogger(PersonRepository.class)
+                    .audit("Person " + personId + " successfully deleted");
         } catch (SQLException e) {
             LOG.warn("Failed to delete person " + personId, e);
         }
@@ -101,6 +104,18 @@ public class PersonRepository {
             statement.setString(1, firstName);
             statement.setString(2, email);
             statement.executeUpdate();
+
+            AuditLogger
+                    .getAuditLogger(PersonRepository.class)
+                    .auditChange(
+                            new Entity(
+                                    "person.update",
+                                    String.valueOf(personFromDb.getId()),
+                                    personFromDb.toString(),
+                                    personUpdate.toString()
+                            )
+                    );
+
         } catch (SQLException e) {
             LOG.warn("Failed to update person " + personUpdate.getId() + " details", e);
         }
