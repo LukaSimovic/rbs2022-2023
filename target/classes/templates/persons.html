@@ -67,6 +67,7 @@
                             tdElement.textContent = person.email;
                             tableRowElement.appendChild(tdElement);
                             tdElement = document.createElement("td");
+                            tdElement.setAttribute("sec:authorize", "hasAuthority('VIEW_PERSON')");
                             tdElement.innerHTML = '<a href="/persons/' + person.id + '">View profile</a>';
                             tableRowElement.appendChild(tdElement);
 

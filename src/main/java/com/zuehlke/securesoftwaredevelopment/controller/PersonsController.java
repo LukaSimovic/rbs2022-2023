@@ -1,6 +1,7 @@
 package com.zuehlke.securesoftwaredevelopment.controller;
 
 import com.zuehlke.securesoftwaredevelopment.config.AuditLogger;
+import com.zuehlke.securesoftwaredevelopment.config.SecurityUtil;
 import com.zuehlke.securesoftwaredevelopment.domain.Person;
 import com.zuehlke.securesoftwaredevelopment.domain.User;
 import com.zuehlke.securesoftwaredevelopment.repository.PersonRepository;
@@ -35,23 +36,46 @@ public class PersonsController {
     }
 
     @GetMapping("/persons/{id}")
-    @PreAuthorize("hasAuthority('VIEW_PERSON')")
-    public String person(@PathVariable int id, Model model, HttpSession session) {
+    public String person(@PathVariable int id, Model model, HttpSession session) throws AccessDeniedException {
+
+        // ovde se mozda doslo jer je manager ili reviewer promenio svoje podatke,
+        // a on nema permisiju VIEW_PERSON
+        if(!SecurityUtil.hasPermission("VIEW_PERSON")){
+            int currentUserId = SecurityUtil.getCurrentUser().getId();
+            if(currentUserId != id){
+                throw new AccessDeniedException("Forbidden");
+            }
+        }
+
         String csrf = session.getAttribute("CSRF_TOKEN").toString();
         model.addAttribute("CSRF_TKN", csrf);
+
         model.addAttribute("person", personRepository.get("" + id));
         return "person";
     }
 
     @GetMapping("/myprofile")
-    public String self(Model model, Authentication authentication) {
+    @PreAuthorize("hasAuthority('VIEW_MY_PROFILE')")
+    public String self(Model model, Authentication authentication, HttpSession session) {
+
+        String csrf = session.getAttribute("CSRF_TOKEN").toString();
+        model.addAttribute("CSRF_TKN", csrf);
+
         User user = (User) authentication.getPrincipal();
         model.addAttribute("person", personRepository.get("" + user.getId()));
         return "person";
     }
 
     @DeleteMapping("/persons/{id}")
-    public ResponseEntity<Void> person(@PathVariable int id) {
+    public ResponseEntity<Void> person(@PathVariable int id) throws AccessDeniedException {
+
+        if(!SecurityUtil.hasPermission("UPDATE_PERSON")){
+            int currentUserId = SecurityUtil.getCurrentUser().getId();
+            if(currentUserId != id){
+                throw new AccessDeniedException("Forbidden");
+            }
+        }
+
         personRepository.delete(id);
         userRepository.delete(id);
 
@@ -61,9 +85,19 @@ public class PersonsController {
     @PostMapping("/update-person")
     public String updatePerson(Person person, HttpSession session, @RequestParam("csrftkn") String csrf) throws AccessDeniedException {
         String csrfFromSession = session.getAttribute("CSRF_TOKEN").toString();
+
         if(!csrfFromSession.equals(csrf)){
             throw new AccessDeniedException("Forbidden");
         }
+
+        if(!SecurityUtil.hasPermission("UPDATE_PERSON")){
+            int currentUserId = SecurityUtil.getCurrentUser().getId();
+            int personId = Integer.parseInt(person.getId());
+            if(currentUserId != personId){
+                throw new AccessDeniedException("Forbidden");
+            }
+        }
+
         personRepository.update(person);
         return "redirect:/persons/" + person.getId();
     }
